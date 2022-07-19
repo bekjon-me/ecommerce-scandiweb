@@ -1,0 +1,80 @@
+.header {
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: 'Raleway'; //this font created at src/assets/main.scss
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 5%;
+  left: 5%;
+  .navigation {
+    position: absolute;
+    left: 0;
+    .header_navigation {
+      display: flex;
+      .nav-link:not(:last-child) {
+        margin-right: 2em;
+        margin-top: 30px;
+        padding-bottom: 30px;
+        text-decoration: none;
+        color: #1d1f22;
+      }
+      .nav-link:last-child {
+        margin-top: 30px;
+        padding-bottom: 30px;
+        text-decoration: none;
+        color: #1d1f22;
+      }
+    }
+  }
+  .brand {
+    position: absolute;
+    margin: 0 auto;
+  }
+  .actions {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    .setCurrency {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    span {
+      cursor: pointer;
+    }
+    .cartIconDiv {
+      cursor: pointer;
+      position: relative;
+      span {
+        position: absolute;
+        top: -20%;
+        left: 60%;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #000;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: 'Raleway', sans-serif;
+      }
+    }
+  }
+}
+
+.active {
+  border-bottom: 2px solid #5ece7b;
+  transition: 0.4s ease;
+  div {
+    transition: 0.4s ease;
+    padding: 0 16px;
+    color: #5ece7b;
+  }
+}

@@ -1,0 +1,89 @@
+ul.cart {
+  list-style: none;
+  background-color: #eee;
+  position: absolute;
+  right: inherit;
+  top: 100%;
+  color: #000;
+  max-height: 85vh;
+  padding: 32px 16px;
+  min-width: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  animation: cardAnim 0.3s ease;
+}
+
+.products {
+  margin-top: 32px;
+}
+
+.total {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  span:first-child {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: #1d1f22;
+  }
+
+  span:nth-child(2) {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 160%;
+    color: #1d1f22;
+  }
+}
+
+.cartFooter {
+  display: flex;
+  align-items: center;
+  margin-top: 32px;
+  column-gap: 12px;
+  button {
+    width: 50%;
+  }
+  .toCart {
+    width: 50%;
+    button {
+      width: 100%;
+    }
+  }
+  button,
+  .toCart > button {
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #1d1f22;
+    padding: 13px;
+    border: 1px solid #1d1f22;
+    cursor: pointer;
+    &:nth-child(2) {
+      background-color: #5ece7b;
+      border: none;
+    }
+  }
+}
+
+@keyframes cardAnim {
+  0% {
+    top: 150%;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    top: 100%;
+  }
+}
