@@ -1,0 +1,117 @@
+.descriptionDiv {
+  display: grid;
+  grid-template-columns: 80px 1fr 292px 1fr;
+  column-gap: 30px;
+  margin-top: 152px;
+  position: relative;
+  z-index: 1;
+  .images {
+    max-height: 400px;
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    img {
+      cursor: pointer;
+    }
+    .descriptionImg {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border: 0.1px solid #e6e6e6;
+    }
+  }
+  .focusedImg {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 620px;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+  }
+  .information {
+    min-width: 292px;
+    margin-left: 70px;
+    display: grid;
+    grid-template-columns: auto;
+    height: fit-content;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    h2 {
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 27px;
+      display: flex;
+      align-items: center;
+      color: #1d1f22;
+      margin-bottom: 15px;
+    }
+    .price {
+      margin-top: 36px;
+      order: 2;
+      display: grid;
+      grid-template-columns: auto;
+      row-gap: 10px;
+      height: fit-content;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 18px;
+      color: #1d1f22;
+      span:nth-child(2) {
+        font-family: 'Raleway';
+      }
+    }
+    .addBtn {
+      margin-top: 20px;
+      order: 5;
+      padding: 16px 0;
+      background-color: #5ece7b;
+      font-family: 'Raleway,', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 120%;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+    }
+    .description {
+      margin-top: 40px;
+      order: 6;
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 159.96%;
+      color: #1d1f22;
+    }
+  }
+}
+
+.options {
+  height: 32px;
+  padding: 0 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+  color: #1d1f22;
+}
