@@ -1,4 +1,4 @@
-# Personal Portfolio
+# Ecommerce website
 
 > Website created by Bekjon Ishpulatov for test assignment
 
