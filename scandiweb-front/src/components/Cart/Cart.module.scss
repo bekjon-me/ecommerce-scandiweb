@@ -45,34 +45,42 @@ ul.cart {
 }
 
 .cartFooter {
-  display: flex;
-  align-items: center;
-  margin-top: 32px;
-  column-gap: 12px;
-  button {
-    width: 50%;
+  .total {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
-  .toCart {
-    width: 50%;
+
+  .actions {
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+    column-gap: 12px;
     button {
-      width: 100%;
+      width: 50%;
     }
-  }
-  button,
-  .toCart > button {
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 120%;
-    text-transform: uppercase;
-    color: #1d1f22;
-    padding: 13px;
-    border: 1px solid #1d1f22;
-    cursor: pointer;
-    &:nth-child(2) {
-      background-color: #5ece7b;
-      border: none;
+    .toCart {
+      width: 50%;
+      button {
+        width: 100%;
+      }
+    }
+    button,
+    .toCart > button {
+      font-family: 'Raleway', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 120%;
+      text-transform: uppercase;
+      color: #1d1f22;
+      padding: 13px;
+      border: 1px solid #1d1f22;
+      cursor: pointer;
+      &:nth-child(2) {
+        background-color: #5ece7b;
+        border: none;
+      }
     }
   }
 }

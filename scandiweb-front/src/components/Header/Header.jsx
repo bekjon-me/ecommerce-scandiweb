@@ -9,7 +9,7 @@ import {
   setToCart,
   setToNull,
 } from '../../redux/cartCurrencyModal';
-import { calcQuantity } from '../../redux/cartSlice';
+import { calcQuantity, calcTotal } from '../../redux/cartSlice';
 
 class Header extends Component {
   constructor(props) {
@@ -33,8 +33,13 @@ class Header extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.cart.productsInCart !== prevProps.cart.productsInCart) {
+    if (
+      this.props.cart.productsInCart !== prevProps.cart.productsInCart ||
+      this.props.currency.label !== prevProps.currency.label
+    ) {
       this.props.dispatch(calcQuantity());
+      console.log(this.props.currency.label);
+      this.props.dispatch(calcTotal(this.props.currency.label));
     }
   }
 
@@ -118,6 +123,7 @@ const mapStateToProps = (state) => {
     activeLink: state.activeLink,
     cart: state.cart,
     activeModal: state.activeModal,
+    currency: state.activeModal.currency,
   };
 };
 

@@ -40,12 +40,21 @@ class Cart extends React.Component {
           </li>
         ))}
         <li className={styles.cartFooter}>
-          <Link className={styles.toCart} to="/cart">
-            <button onClick={() => this.props.dispatch(setToNull())}>
-              VIEW BAG
-            </button>
-          </Link>
-          <button>CHECK OUT</button>
+          <div className={styles.total}>
+            <span>Total:</span>
+            <span>
+              {this.props.activeModal.currency.symbol +
+                this.props.cart.total.toFixed(2)}
+            </span>
+          </div>
+          <div className={styles.actions}>
+            <Link className={styles.toCart} to="/cart">
+              <button onClick={() => this.props.dispatch(setToNull())}>
+                VIEW BAG
+              </button>
+            </Link>
+            <button>CHECK OUT</button>
+          </div>
         </li>
       </ul>
     );
