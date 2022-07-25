@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Raleway';
+  src: url(../assets/fonts/Raleway/Raleway-Regular.ttf);
+}
+@font-face {
+  font-family: 'RalewayLight';
+  src: url(../assets/fonts/Raleway/Raleway-Light.ttf);
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.addRemoveProduct {
+  cursor: pointer;
+}
+
+@keyframes cardAnim {
+  0% {
+    margin-top: 150%;
+    opacity: 0;
+  }
+  80% {
+    margin-top: 105%;
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 100%;
+  }
+}
