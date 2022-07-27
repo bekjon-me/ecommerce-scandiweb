@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { fetchAllClothesProducts } from '../../redux/fetchClothes';
-import {
-  fetchAllProducts,
-  fetchAllTechProducts,
-} from '../../redux/fetchDataSlice';
+import { fetchAllProducts } from '../../redux/fetchDataSlice';
+import { fetchAllTechProducts } from '../../redux/fetchTechProducts';
 import { addToCart } from '../../redux/cartSlice';
 import styles from './Description.module.scss';
 

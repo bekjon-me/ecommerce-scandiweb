@@ -7,10 +7,9 @@ import { fetchAllProducts } from './redux/fetchDataSlice';
 import { fetchAllTechProducts } from './redux/fetchTechProducts';
 import { fetchAllClothesProducts } from './redux/fetchClothes';
 
-export const PRODUCTS = gql`
-  {
-    categories {
-      name
+export const FETCHPRODUCTS = gql`
+  query Category($title: String!) {
+    category(input: { title: $title }) {
       products {
         id
         name

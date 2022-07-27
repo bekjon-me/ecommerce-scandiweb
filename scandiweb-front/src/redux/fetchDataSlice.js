@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { client } from '..';
-import { PRODUCTS } from '../App';
+import { FETCHPRODUCTS } from '../App';
 
 const initialState = {
   products: null,
@@ -10,30 +10,16 @@ const initialState = {
 
 export const fetchAllProducts = createAsyncThunk('fetch/fetchAll', async () => {
   try {
-    const response = await client.query({ query: PRODUCTS }).then((result) => {
-      return result.data.categories[0].products;
-    });
+    const response = await client
+      .query({ query: FETCHPRODUCTS, variables: { title: 'all' } })
+      .then((result) => {
+        return result.data.category.products;
+      });
     return response;
   } catch (error) {
     return error;
   }
 });
-
-export const fetchAllTechProducts = createAsyncThunk(
-  'fetch/fetchTech',
-  async () => {
-    try {
-      const response = await client
-        .query({ query: PRODUCTS })
-        .then((result) => {
-          return result.data.categories[2].products;
-        });
-      return response;
-    } catch (error) {
-      return error;
-    }
-  }
-);
 
 const fetchDataSlice = createSlice({
   name: 'fetch',
