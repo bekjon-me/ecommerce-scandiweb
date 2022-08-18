@@ -17,6 +17,7 @@ class Category extends Component {
     this.props.dispatch(setToAll());
     if (this.props.all.status === 'idle') {
       await this.props.dispatch(fetchAllProducts());
+      console.log(this.props);
     }
     this.setState({ products: this.props.all.products });
   }
@@ -31,7 +32,11 @@ class Category extends Component {
                 <ProductCard
                   key={this.state.products[product]?.id}
                   img={this.state.products[product]?.gallery[0]}
-                  content={this.state.products[product]?.name}
+                  content={
+                    this.state.products[product]?.brand +
+                    ' ' +
+                    this.state.products[product]?.name
+                  }
                   id={this.state.products[product]?.id}
                   price={this.state.products[product]?.prices}
                 />

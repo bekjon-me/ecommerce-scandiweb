@@ -8,9 +8,6 @@ import {
 import { Header } from '../components';
 import { routes } from './routes';
 export default class AppRouter extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Router>

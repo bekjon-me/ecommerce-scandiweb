@@ -17,6 +17,7 @@ class ClothesCategory extends Component {
     this.props.dispatch(setToClothes());
     if (this.props.clothes.status === 'idle') {
       await this.props.dispatch(fetchAllClothesProducts());
+      console.log(this.props.clothes);
     }
     this.setState({ products: this.props.clothes.products });
   }

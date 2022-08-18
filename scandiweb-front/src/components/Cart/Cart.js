@@ -4,6 +4,7 @@ import { ProductInCart } from '../../components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setToNull } from '../../redux/cartCurrencyModal';
+import cartBg from '../../assets/icons/emtyCart.webp';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Cart extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.cart !== prevProps.cart) {
       this.setState({
         products: this.props.cart.productsInCart,
@@ -30,15 +31,23 @@ class Cart extends React.Component {
             this.props.activeModal.activeModal === 'cart' ? 'block' : 'none',
         }}
       >
-        <li>My Bag, 3items</li>
-        {this.state.products?.map((product) => (
-          <li
-            key={product.id + JSON.stringify(product.selectedParams)}
-            className={styles.products}
-          >
-            <ProductInCart product={product} />
-          </li>
-        ))}
+        <li>My Bag, {this.props.cart.quantity} items</li>
+        {this.props.cart.quantity > 0 ? (
+          this.state.products?.map((product) => (
+            <li
+              key={product.id + JSON.stringify(product.selectedParams)}
+              className={styles.products}
+            >
+              <ProductInCart product={product} />
+            </li>
+          ))
+        ) : (
+          <>
+            <img className={styles.cartBg} src={cartBg} alt="CartBackground" />
+            <h2 className={styles.emptyh2}>Your cart is empty</h2>
+          </>
+        )}
+
         <li className={styles.cartFooter}>
           <div className={styles.total}>
             <span>Total:</span>

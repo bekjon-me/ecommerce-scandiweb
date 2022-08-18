@@ -69,8 +69,6 @@ const fetchDataSlice = createSlice({
     calcTotal(state, action) {
       state.total = 0;
       state.productsInCart?.map((product) => {
-        console.log(product.prices);
-        console.log(action.payload);
         product.prices.map((price) => {
           if (price.currency.label === action.payload) {
             state.total += price.amount * product.amount;

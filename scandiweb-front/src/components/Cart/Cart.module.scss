@@ -11,10 +11,17 @@ ul.cart {
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
   animation: cardAnim 0.3s ease;
+
+  .cartBg {
+    max-width: 325px;
+    object-fit: contain;
+    background-color: transparent;
+  }
+
+  .emptyh2 {
+    text-align: center;
+  }
 }
 
 .products {
