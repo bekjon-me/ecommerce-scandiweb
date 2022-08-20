@@ -6,6 +6,7 @@ import { fetchAllProducts } from '../../redux/fetchDataSlice';
 import { fetchAllTechProducts } from '../../redux/fetchTechProducts';
 import { addToCart } from '../../redux/cartSlice';
 import styles from './Description.module.scss';
+import { fetchViewingProduct } from '../../redux/viewingProduct';
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -23,33 +24,12 @@ class Description extends Component {
 
   async componentDidMount() {
     const { params } = this.props;
-    const { type } = params;
     const { id } = params;
-    if (type === 'tech') {
-      await this.props.dispatch(fetchAllTechProducts());
-      this.props.tech.products.map((product) => {
-        if (product.id === id) {
-          this.setState({ product: product, img: product.gallery[0] });
-        }
-        return null;
-      });
-    } else if (type === 'clothes') {
-      await this.props.dispatch(fetchAllClothesProducts());
-      this.props.clothes.products.map((product) => {
-        if (product.id === id) {
-          this.setState({ product: product, img: product.gallery[0] });
-        }
-        return null;
-      });
-    } else {
-      await this.props.dispatch(fetchAllProducts());
-      this.props.all.products.map((product) => {
-        if (product.id === id) {
-          this.setState({ product: product, img: product.gallery[0] });
-        }
-        return null;
-      });
-    }
+    await this.props.dispatch(fetchViewingProduct(id));
+    this.setState({
+      product: this.props.viewingProduct.product,
+      img: this.props.viewingProduct.product.gallery[0],
+    });
   }
 
   addToCartHandle = () => {
@@ -154,7 +134,7 @@ class Description extends Component {
                       })
                     }
                   >
-                    {item.name === 'Color' ? '' : option.displayValue}
+                    {item.name === 'Color' ? '' : option.value}
                   </button>
                 ))}
               </div>
@@ -199,6 +179,7 @@ const mapStateToProps = (state) => {
     all: state.all,
     tech: state.tech,
     clothes: state.clothes,
+    viewingProduct: state.viewingProduct,
     productsInCart: state.cart.productsInCart,
   };
 };

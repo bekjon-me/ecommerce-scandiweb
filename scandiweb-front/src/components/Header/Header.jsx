@@ -20,7 +20,6 @@ class Header extends Component {
       this.props.currency.label !== prevProps.currency.label
     ) {
       this.props.dispatch(calcQuantity());
-      console.log(this.props.currency.label);
       this.props.dispatch(calcTotal(this.props.currency.label));
     }
   }

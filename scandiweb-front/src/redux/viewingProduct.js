@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { client } from '..';
-import { PRODUCTS } from '../App';
+import { getProduct } from '../Graphql/queries';
 
 const initialState = {
   product: null,
@@ -10,17 +10,19 @@ const initialState = {
 
 export const fetchViewingProduct = createAsyncThunk(
   'fetch/fetchTech',
-  async () => {
+  async (id) => {
     try {
       const response = await client
-        .query({ query: PRODUCTS })
+        .query({ query: getProduct, variables: { id: id } })
         .then((result) => {
-          return result.data.categories[2].products;
+          return result.data.product;
         });
+      console.log(response);
       return response;
     } catch (error) {
       return error;
     }
+    // console.log(id);
   }
 );
 
@@ -34,7 +36,7 @@ const fetchDataSlice = createSlice({
       })
       .addCase(fetchViewingProduct.fulfilled, (state, action) => {
         state.status = 'success';
-        state.products = action.payload;
+        state.product = action.payload;
       })
       .addCase(fetchViewingProduct.rejected, (state, action) => {
         state.status = 'error';

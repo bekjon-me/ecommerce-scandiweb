@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { client } from '..';
-import { FETCHPRODUCTS } from '../App';
+import { FETCHPRODUCTS } from '../Graphql/queries';
 
 const initialState = {
   products: null,

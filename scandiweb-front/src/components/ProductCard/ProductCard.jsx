@@ -1,34 +1,88 @@
 import React, { Component } from 'react';
 import { cartSvg } from '../../assets/icons';
 import './ProductCard.scss';
-import { Link } from 'react-router-dom';
+import { withRouter } from '../../Router/withRouter';
 import { connect } from 'react-redux';
+import { addToCart } from '../../redux/cartSlice';
 
 class ProductCard extends Component {
+  toPdp = (e) => {
+    this.props.navigate(`${this.props.product.id}/description`);
+  };
+
+  handleAddToCart = (e) => {
+    e.stopPropagation();
+    let selectedParams = {};
+
+    this.props.product.attributes.forEach((attribute) => {
+      selectedParams[attribute.name] = attribute.items[0].value;
+    });
+    let merged = {
+      ...this.props.product,
+      selectedParams,
+    };
+    this.props.dispatch(addToCart(merged));
+  };
+
   render() {
-    return (
-      <Link to={`${this.props.id}/description`} className="productCard">
-        <div className="card">
-          <img src={this.props.img} alt="Img" className="cardImg" />
-          <img src={cartSvg} alt="CartSvg" className="cart_svg" />
-          <div>
-            <div
-              className="content"
-              dangerouslySetInnerHTML={{ __html: this.props.content }}
-            ></div>
-            <p className="price-regular">
-              {this.props.price?.map((price) => {
-                if (
-                  price.currency.label === this.props.activeModal.currency.label
-                ) {
-                  return price.currency.symbol + price.amount;
-                }
-                return '';
-              })}
-            </p>
-          </div>
+    return this.props.product.inStock ? (
+      <div className="card productCard" onClick={() => this.toPdp()}>
+        <img
+          src={this.props.product.gallery[0]}
+          alt="Img"
+          className="cardImg"
+        />
+        <img
+          src={cartSvg}
+          alt="CartSvg"
+          className="cart_svg"
+          onClick={(e) => this.handleAddToCart(e)}
+        />
+        <div>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: this.props.product.brand + ' ' + this.props.product.name,
+            }}
+          ></div>
+          <p className="price-regular">
+            {this.props.product.prices?.map((price) => {
+              if (
+                price.currency.label === this.props.activeModal.currency.label
+              ) {
+                return price.currency.symbol + price.amount;
+              }
+              return '';
+            })}
+          </p>
         </div>
-      </Link>
+      </div>
+    ) : (
+      <div className="card productCard outOfStock" onClick={() => this.toPdp()}>
+        <img
+          src={this.props.product.gallery[0]}
+          alt="Img"
+          className="cardImg"
+        />
+        <div>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: this.props.product.brand + ' ' + this.props.product.name,
+            }}
+          ></div>
+          <p className="price-regular">
+            {this.props.product.prices?.map((price) => {
+              if (
+                price.currency.label === this.props.activeModal.currency.label
+              ) {
+                return price.currency.symbol + price.amount;
+              }
+              return '';
+            })}
+          </p>
+        </div>
+      </div>
     );
   }
 }
@@ -40,4 +94,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProductCard);
+export default withRouter(connect(mapStateToProps)(ProductCard));

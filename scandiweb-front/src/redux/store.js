@@ -5,6 +5,7 @@ import clothesReducers from './fetchClothes';
 import activeLinkReducers from './setActiveLink';
 import activeModalReducers from './cartCurrencyModal';
 import cartReducers from './cartSlice';
+import viewingProductReducers from './viewingProduct';
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     activeLink: activeLinkReducers,
     activeModal: activeModalReducers,
     cart: cartReducers,
+    viewingProduct: viewingProductReducers,
   },
 });
