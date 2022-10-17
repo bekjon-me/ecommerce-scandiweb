@@ -14,6 +14,12 @@ class App extends Component {
     };
   }
 
+  componentDidMount(){
+    window.onbeforeunload = function() {
+        console.log("refresh");
+    };
+  }
+
   render() {
     return <AppRouter />;
   }

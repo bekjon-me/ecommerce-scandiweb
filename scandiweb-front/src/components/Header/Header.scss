@@ -15,18 +15,18 @@
     left: 0;
     .header_navigation {
       display: flex;
-      .nav-link:not(:last-child) {
+      .link {
         margin-right: 2em;
         margin-top: 30px;
         padding-bottom: 30px;
         text-decoration: none;
         color: #1d1f22;
-      }
-      .nav-link:last-child {
-        margin-top: 30px;
-        padding-bottom: 30px;
-        text-decoration: none;
-        color: #1d1f22;
+        .nav-link:last-child {
+          margin-top: 30px;
+          padding-bottom: 30px;
+          text-decoration: none;
+          color: #1d1f22;
+        }
       }
     }
   }

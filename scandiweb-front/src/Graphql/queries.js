@@ -38,7 +38,7 @@ export const getProduct = gql`
     product(id: $id) {
       id
       brand
-      name
+      name  
       inStock
       gallery
       description
@@ -60,3 +60,12 @@ export const getProduct = gql`
     }
   }
 `;
+
+export const Currencies = gql` 
+ query Currency {
+  currencies {
+    label
+    symbol
+  }
+  }
+`  

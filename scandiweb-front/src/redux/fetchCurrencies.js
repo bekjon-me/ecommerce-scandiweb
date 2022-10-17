@@ -1,26 +1,27 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { client } from '..';
-import { FETCHPRODUCTS } from '../Graphql/queries';
+import { Currencies } from '../Graphql/queries';
 
 const initialState = {
-  products: null,
+  currencies: null,
   status: 'idle',
   error: null,
 };
 
-export const fetchAllTechProducts = createAsyncThunk(
-  'fetch/fetchTechProducts',
-  async () => {
+export const fetchCurrencies = createAsyncThunk(
+  'fetch/fetchCurrencies',
+  async (id) => {
     try {
       const response = await client
-        .query({ query: FETCHPRODUCTS, variables: { title: 'tech' } })
+        .query({ query: Currencies })
         .then((result) => {
-          return result.data.category.products;
+            return result.data.currencies
         });
       return response;
     } catch (error) {
       return error;
     }
+    // console.log(id);
   }
 );
 
@@ -29,14 +30,14 @@ const fetchDataSlice = createSlice({
   initialState,
   extraReducers(builder) {
     builder
-      .addCase(fetchAllTechProducts.pending, (state, action) => {
+      .addCase(fetchCurrencies.pending, (state, action) => {
         state.status = 'loading';
       })
-      .addCase(fetchAllTechProducts.fulfilled, (state, action) => {
+      .addCase(fetchCurrencies.fulfilled, (state, action) => {
         state.status = 'success';
-        state.products = action.payload;
+        state.currencies = action.payload;
       })
-      .addCase(fetchAllTechProducts.rejected, (state, action) => {
+      .addCase(fetchCurrencies.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error;
       });

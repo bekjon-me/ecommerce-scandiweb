@@ -1,9 +1,28 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 
+const localDataBase = JSON.parse(localStorage.getItem("products"))
+let localquantity = 0;
+let localTotal = 0;
+localDataBase?.forEach((product) => {
+  localquantity += product.amount;
+});
+
+localDataBase?.map((product) => {
+  product.prices.map((price) => {
+    if (price.currency.label === JSON.parse(localStorage.getItem("currency")).label) {
+      localTotal += price.amount * product.amount;
+    }else if(price.currency.label === "USD") {
+      localTotal += price.amount * product.amount;
+    }
+    return null;
+  });
+  return null;
+});
+
 const initialState = {
-  productsInCart: [],
-  quantity: 0,
-  total: 0,
+  productsInCart: localDataBase ? localDataBase : [],
+  quantity: localquantity,
+  total: localTotal,
 };
 
 const fetchDataSlice = createSlice({
@@ -13,6 +32,8 @@ const fetchDataSlice = createSlice({
     addToCart(state, action) {
       if (state.productsInCart.length === 0) {
         state.productsInCart.push({ ...action.payload, amount: 1 });
+        localStorage.setItem('products', JSON.stringify(state.productsInCart));
+
         return;
       }
       state.productsInCart.map((product) => {
@@ -26,6 +47,8 @@ const fetchDataSlice = createSlice({
             action.payload.selectedParams['Capacity']
         ) {
           product.amount += 1;
+          console.log("bor");
+          localStorage.setItem('products', JSON.stringify(state.productsInCart));
         }
         return null;
       });
@@ -43,6 +66,7 @@ const fetchDataSlice = createSlice({
         )
       ) {
         state.productsInCart.push({ ...action.payload, amount: 1 });
+        localStorage.setItem('products', JSON.stringify(state.productsInCart));
       }
     },
     removeFromCart(state, action) {
@@ -55,6 +79,7 @@ const fetchDataSlice = createSlice({
             state.productsInCart.splice(index, 1);
           }
           product.amount -= 1;
+           localStorage.setItem('products', JSON.stringify(state.productsInCart));
         }
         return null;
       });

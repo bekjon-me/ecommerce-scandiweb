@@ -1,41 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setCurrency, setToNull } from '../../redux/cartCurrencyModal';
+import {fetchCurrencies} from '../../redux/fetchCurrencies';
 import styles from './Currency.module.scss';
 
-const currencies = [
-  {
-    currency: {
-      label: 'USD',
-      symbol: '$',
-    },
-  },
-  {
-    currency: {
-      label: 'GBP',
-      symbol: '£',
-    },
-  },
-  {
-    currency: {
-      label: 'AUD',
-      symbol: 'A$',
-    },
-  },
-  {
-    currency: {
-      label: 'JPY',
-      symbol: '¥',
-    },
-  },
-  {
-    currency: {
-      label: 'RUB',
-      symbol: '₽',
-    },
-  },
-];
+
 class Currency extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currencies: null,
+    };
+  }
+  
+  async componentDidMount() {
+    await this.props.dispatch(fetchCurrencies())
+    this.setState({currencies: this.props.currencies.currencies})
+  }
   render() {
     return (
       <ul
@@ -47,22 +28,22 @@ class Currency extends Component {
               : 'none',
         }}
       >
-        {currencies.map((currency) => (
+        {this.state.currencies?.map((currency) => (
           <li
-            key={currency.currency.label}
+            key={currency.label}
             className={styles.mainDiv}
             onClick={() => {
               this.props.dispatch(
                 setCurrency({
-                  label: currency.currency.label,
-                  symbol: currency.currency.symbol,
+                  label: currency.label,
+                  symbol: currency.symbol,
                 })
               );
               this.props.dispatch(setToNull());
             }}
           >
-            <div className={styles.tooltip}>{currency.currency.label}</div>
-            <div className={styles.value}>{`${currency.currency.symbol}`}</div>
+            <div className={styles.tooltip}>{currency.label}</div>
+            <div className={styles.value}>{`${currency.symbol}`}</div>
           </li>
         ))}
       </ul>
@@ -73,6 +54,7 @@ class Currency extends Component {
 const mapStateToProps = (state) => {
   return {
     activeModal: state.activeModal,
+    currencies: state.currencies,
   };
 };
 

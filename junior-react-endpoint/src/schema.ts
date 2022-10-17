@@ -1,5 +1,4 @@
 import { gql } from 'apollo-server';
-
 const typeDefs = gql`
     type Price {
         currency: Currency!,

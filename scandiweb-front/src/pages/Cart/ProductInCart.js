@@ -88,6 +88,7 @@ class ProductInCard extends Component {
                   style={{
                     display: 'flex',
                     columnGap: '10px',
+                    alignItems: 'center',
                   }}
                 >
                   {item.items.map((option) => (
@@ -105,9 +106,9 @@ class ProductInCard extends Component {
                         border:
                           item.name === 'Color'
                             ? this.props.product.selectedParams[item.name] ===
-                              option.value
-                              ? '1px solid #1D1F22'
-                              : 'none'
+                              option.value 
+                              ? '3px solid #1D1F22'
+                              : option.value === '#FFFFFF' ? '1px solid #1D1F22' : "none"
                             : '1px solid #1D1F22',
                         color:
                           item.name === 'Color'
@@ -116,16 +117,23 @@ class ProductInCard extends Component {
                               option.value
                             ? '#fff'
                             : '#1D1F22',
-                        height:
-                          item.name === 'Color'
-                            ? this.props.product.selectedParams['Color'] ===
-                              option.value
-                              ? '34px'
-                              : '32px'
-                            : '32px',
+                            height:
+                            item.name === 'Color'
+                              ? this.props.product.selectedParams['Color'] ===
+                                option.value
+                                ? '38px'
+                                : '32px'
+                              : 'fit-content',
+                          width:
+                            item.name === 'Color'
+                              ? this.props.product.selectedParams['Color'] ===
+                                option.value
+                                ? '38px'
+                                : '32px'
+                              : 'fit-content',
                       }}
                     >
-                      {item.name === 'Color' ? '' : option.displayValue}
+                      {item.name === 'Color' ? '' : option.value}
                     </button>
                   ))}
                 </div>

@@ -57,12 +57,12 @@ class ProductInCard extends Component {
                             ? '#1D1F22'
                             : '#fff',
                         border:
-                          item.name === 'Color'
-                            ? this.props.product.selectedParams[item.name] ===
-                              option.value
-                              ? '1px solid #1D1F22'
-                              : 'none'
-                            : '1px solid #1D1F22',
+                        item.name === 'Color'
+                        ? this.props.product.selectedParams[item.name] ===
+                          option.value 
+                          ? '3px solid #1D1F22'
+                          : option.value === '#FFFFFF' ? '1px solid #1D1F22' : "none"
+                        : '1px solid #1D1F22',
                         color:
                           item.name === 'Color'
                             ? '#fff'
@@ -86,7 +86,7 @@ class ProductInCard extends Component {
                             : 'fit-content',
                       }}
                     >
-                      {item.name === 'Color' ? '' : option.displayValue}
+                      {item.name === 'Color' ? '' : option.value}
                     </button>
                   ))}
                 </div>

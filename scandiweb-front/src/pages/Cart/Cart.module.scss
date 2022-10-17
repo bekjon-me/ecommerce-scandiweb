@@ -5,7 +5,7 @@ ul.cart {
   margin-top: 160px;
   h2.cartName {
     margin-bottom: 55px;
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
@@ -29,7 +29,7 @@ ul.cart {
   display: flex;
   justify-content: space-between;
   span:first-child {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -38,7 +38,7 @@ ul.cart {
   }
 
   span:nth-child(2) {
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -61,7 +61,7 @@ ul.cart {
     grid-template-columns: auto auto;
     margin-bottom: 16px;
     p:nth-child(2n -1) {
-      font-family: 'Raleway', sans-serif;
+      font-family: "Raleway", sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 24px;
@@ -69,7 +69,7 @@ ul.cart {
       color: #1d1f22;
     }
     p:nth-child(2n) {
-      font-family: 'Raleway', sans-serif;
+      font-family: "Raleway", sans-serif;
       font-style: normal;
       font-weight: 700;
       font-size: 24px;
@@ -79,7 +79,7 @@ ul.cart {
   }
   button {
     width: 280px;
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -90,5 +90,6 @@ ul.cart {
     cursor: pointer;
     background-color: #5ece7b;
     border: none;
+    margin-bottom: 20px;
   }
 }

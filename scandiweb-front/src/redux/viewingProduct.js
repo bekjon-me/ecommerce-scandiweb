@@ -17,7 +17,6 @@ export const fetchViewingProduct = createAsyncThunk(
         .then((result) => {
           return result.data.product;
         });
-      console.log(response);
       return response;
     } catch (error) {
       return error;

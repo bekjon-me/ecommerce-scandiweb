@@ -14,6 +14,13 @@ class Cart extends React.Component {
     };
   }
 
+   componentDidMount() {
+    console.log(this.props.cart);
+       this.setState({
+        products: this.props.cart.productsInCart,
+      });
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.cart !== prevProps.cart) {
       this.setState({

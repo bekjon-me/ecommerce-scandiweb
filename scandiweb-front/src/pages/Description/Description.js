@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
-import { fetchAllClothesProducts } from '../../redux/fetchClothes';
-import { fetchAllProducts } from '../../redux/fetchDataSlice';
-import { fetchAllTechProducts } from '../../redux/fetchTechProducts';
 import { addToCart } from '../../redux/cartSlice';
 import styles from './Description.module.scss';
 import { fetchViewingProduct } from '../../redux/viewingProduct';
@@ -23,6 +20,7 @@ class Description extends Component {
   }
 
   async componentDidMount() {
+
     const { params } = this.props;
     const { id } = params;
     await this.props.dispatch(fetchViewingProduct(id));
@@ -33,18 +31,22 @@ class Description extends Component {
   }
 
   addToCartHandle = () => {
-    if (
-      this.state.product.attributes.length >
-      Object.keys(this.state.selectedParams).length
-    ) {
-      alert('Выберите все параметры');
-      return;
+    if(this.state.product.inStock) {
+        if (
+                this.state.product.attributes.length >
+                Object.keys(this.state.selectedParams).length
+                ) {
+            alert('Выберите все параметры');
+            return;
+        }
+        let merged = {
+            ...this.state.product,
+            selectedParams: { ...this.state.selectedParams },
+        };
+        this.props.dispatch(addToCart(merged));
+    }else {
+        alert("Not available for sale")
     }
-    let merged = {
-      ...this.state.product,
-      selectedParams: { ...this.state.selectedParams },
-    };
-    this.props.dispatch(addToCart(merged));
   };
 
   render() {
@@ -144,7 +146,7 @@ class Description extends Component {
             <span>Price:</span>
             <span>
               {this.state.product.prices.map((value) => {
-                if (value.currency.symbol === '$') {
+                if (value.currency.symbol === this.props.activeModal.currency.symbol) {
                   return (
                     <span key={value}>
                       {value.currency.symbol + ' ' + value.amount}
@@ -169,7 +171,7 @@ class Description extends Component {
         </div>
       </div>
     ) : (
-      <div>Loading...</div>
+      ""
     );
   }
 }
@@ -181,6 +183,7 @@ const mapStateToProps = (state) => {
     clothes: state.clothes,
     viewingProduct: state.viewingProduct,
     productsInCart: state.cart.productsInCart,
+    activeModal: state.activeModal,
   };
 };
 
