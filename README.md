@@ -10,7 +10,7 @@
 
 ## Live Demo
 
-Coming soon...
+[Heroku link](https://scandiweb-front.herokuapp.com/)
 
 ## Author
 
