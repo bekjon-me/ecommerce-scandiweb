@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './Cart.module.scss';
-import { ProductInCart } from '../../components';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { setToNull } from '../../redux/cartCurrencyModal';
-import cartBg from '../../assets/icons/emtyCart.webp';
+import React from "react";
+import styles from "./Cart.module.scss";
+import { ProductInCart } from "../../components";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { setToNull } from "../../redux/cartCurrencyModal";
+import cartBg from "../../assets/icons/emtyCart.webp";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -14,11 +14,10 @@ class Cart extends React.Component {
     };
   }
 
-   componentDidMount() {
-    console.log(this.props.cart);
-       this.setState({
-        products: this.props.cart.productsInCart,
-      });
+  componentDidMount() {
+    this.setState({
+      products: this.props.cart.productsInCart,
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -35,7 +34,7 @@ class Cart extends React.Component {
         className={styles.cart}
         style={{
           display:
-            this.props.activeModal.activeModal === 'cart' ? 'block' : 'none',
+            this.props.activeModal.activeModal === "cart" ? "block" : "none",
         }}
       >
         <li>My Bag, {this.props.cart.quantity} items</li>

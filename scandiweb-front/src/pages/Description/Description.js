@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { useParams } from 'react-router';
-import { addToCart } from '../../redux/cartSlice';
-import styles from './Description.module.scss';
-import { fetchViewingProduct } from '../../redux/viewingProduct';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { useParams } from "react-router";
+import { addToCart } from "../../redux/cartSlice";
+import styles from "./Description.module.scss";
+import { fetchViewingProduct } from "../../redux/viewingProduct";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -20,7 +20,6 @@ class Description extends Component {
   }
 
   async componentDidMount() {
-
     const { params } = this.props;
     const { id } = params;
     await this.props.dispatch(fetchViewingProduct(id));
@@ -31,21 +30,21 @@ class Description extends Component {
   }
 
   addToCartHandle = () => {
-    if(this.state.product.inStock) {
-        if (
-                this.state.product.attributes.length >
-                Object.keys(this.state.selectedParams).length
-                ) {
-            alert('Выберите все параметры');
-            return;
-        }
-        let merged = {
-            ...this.state.product,
-            selectedParams: { ...this.state.selectedParams },
-        };
-        this.props.dispatch(addToCart(merged));
-    }else {
-        alert("Not available for sale")
+    if (this.state.product.inStock) {
+      if (
+        this.state.product.attributes.length >
+        Object.keys(this.state.selectedParams).length
+      ) {
+        alert("Выберите все параметры");
+        return;
+      }
+      let merged = {
+        ...this.state.product,
+        selectedParams: { ...this.state.selectedParams },
+      };
+      this.props.dispatch(addToCart(merged));
+    } else {
+      alert("Not available for sale");
     }
   };
 
@@ -72,25 +71,25 @@ class Description extends Component {
             <div
               key={item.name}
               style={{
-                display: 'grid',
-                rowGap: '10px',
-                gridTemplateColumns: 'auto',
-                height: 'fit-content',
-                marginTop: '24px',
-                fontFamily: 'Roboto Condensed, sans-serif',
-                fontStyle: 'normal',
+                display: "grid",
+                rowGap: "10px",
+                gridTemplateColumns: "auto",
+                height: "fit-content",
+                marginTop: "24px",
+                fontFamily: "Roboto Condensed, sans-serif",
+                fontStyle: "normal",
                 fontWeight: 700,
-                fontSize: '18px',
-                lineHeight: '18px',
-                color: '#1D1F22',
+                fontSize: "18px",
+                lineHeight: "18px",
+                color: "#1D1F22",
               }}
             >
               <span>{item.name}</span>
               <div
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  columnGap: '10px',
+                  display: "flex",
+                  alignItems: "center",
+                  columnGap: "10px",
                 }}
               >
                 {item.items.map((option) => (
@@ -99,33 +98,39 @@ class Description extends Component {
                     className={styles.options}
                     style={{
                       backgroundColor:
-                        item.name === 'Color'
+                        item.name === "Color"
                           ? option.value
                           : this.state.selectedParams[item.name] ===
                             option.value
-                          ? '#1D1F22'
-                          : '#fff',
+                          ? "#1D1F22"
+                          : "#fff",
                       border:
-                        item.name === 'Color'
+                        item.name === "Color"
                           ? this.state.selectedParams[item.name] ===
                             option.value
-                            ? '1px solid #1D1F22'
-                            : 'none'
-                          : '1px solid #1D1F22',
-                      cursor: 'pointer',
+                            ? "3px solid #1D1F22"
+                            : option.value === '#FFFFFF' ? '1px solid #1D1F22' : "none"
+                          : "1px solid #1D1F22",
+                      cursor: "pointer",
                       color:
-                        item.name === 'Color'
-                          ? '#fff'
+                        item.name === "Color"
+                          ? "#fff"
                           : this.state.selectedParams[item.name] ===
                             option.value
-                          ? '#fff'
-                          : '#1D1F22',
+                          ? "#fff"
+                          : "#1D1F22",
                       height:
-                        item.name === 'Color'
-                          ? this.state.selectedParams['Color'] === option.value
-                            ? '34px'
-                            : '32px'
-                          : '32px',
+                        item.name === "Color"
+                          ? this.state.selectedParams["Color"] === option.value
+                            ? "38px"
+                            : "32px"
+                          : "fit-content",
+                      width:
+                        item.name === "Color"
+                          ? this.state.selectedParams["Color"] === option.value
+                            ? "38px"
+                            : "32px"
+                          : "fit-content",
                     }}
                     onClick={() =>
                       this.setState({
@@ -136,7 +141,7 @@ class Description extends Component {
                       })
                     }
                   >
-                    {item.name === 'Color' ? '' : option.value}
+                    {item.name === "Color" ? "" : option.value}
                   </button>
                 ))}
               </div>
@@ -146,14 +151,17 @@ class Description extends Component {
             <span>Price:</span>
             <span>
               {this.state.product.prices.map((value) => {
-                if (value.currency.symbol === this.props.activeModal.currency.symbol) {
+                if (
+                  value.currency.symbol ===
+                  this.props.activeModal.currency.symbol
+                ) {
                   return (
                     <span key={value}>
-                      {value.currency.symbol + ' ' + value.amount}
+                      {value.currency.symbol + " " + value.amount}
                     </span>
                   );
                 }
-                return '';
+                return "";
               })}
             </span>
           </div>
