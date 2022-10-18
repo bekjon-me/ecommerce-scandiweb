@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 export const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "https://scandiweb-webshop.herokuapp.com/",
   cache: new InMemoryCache(),
 });
 
