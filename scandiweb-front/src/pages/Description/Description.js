@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { addToCart } from "../../redux/cartSlice";
 import styles from "./Description.module.scss";
 import { fetchViewingProduct } from "../../redux/viewingProduct";
+import { Audio } from "react-loader-spinner";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -109,7 +110,9 @@ class Description extends Component {
                           ? this.state.selectedParams[item.name] ===
                             option.value
                             ? "3px solid #1D1F22"
-                            : option.value === '#FFFFFF' ? '1px solid #1D1F22' : "none"
+                            : option.value === "#FFFFFF"
+                            ? "1px solid #1D1F22"
+                            : "none"
                           : "1px solid #1D1F22",
                       cursor: "pointer",
                       color:
@@ -179,7 +182,17 @@ class Description extends Component {
         </div>
       </div>
     ) : (
-      ""
+      <div className={styles.loader}>
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="green"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
+      </div>
     );
   }
 }

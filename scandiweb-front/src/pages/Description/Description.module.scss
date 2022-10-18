@@ -143,3 +143,10 @@
   letter-spacing: 0.05em;
   color: #1d1f22;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
