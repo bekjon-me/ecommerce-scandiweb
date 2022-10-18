@@ -77,7 +77,7 @@ class Category extends Component {
   }
 
   render() {
-    return (
+    return this.state.products ? (
       <div>
         <div className="container">
           <div className="title">All Products</div>
@@ -93,6 +93,8 @@ class Category extends Component {
           </div>
         </div>
       </div>
+    ) : (
+      <p>Loading...</p>
     );
   }
 }
