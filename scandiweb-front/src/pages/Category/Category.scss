@@ -3,7 +3,7 @@ div {
     .title {
       font-size: 42px;
       margin-top: 160px;
-      font-family: 'Raleway', sans-serif; //this font created at src/assets/main.scss
+      font-family: "Raleway", sans-serif; //this font created at src/assets/main.scss
     }
   }
   .cards_div {
@@ -11,5 +11,8 @@ div {
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 190px;
+    .loader {
+      margin-top: 100px;
+    }
   }
 }

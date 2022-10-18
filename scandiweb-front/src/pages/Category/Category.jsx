@@ -7,6 +7,7 @@ import { setToAll, setToClothes, setToTech } from "../../redux/setActiveLink";
 import { fetchAllClothesProducts } from "../../redux/fetchClothes";
 import { fetchAllTechProducts } from "../../redux/fetchTechProducts";
 import { useParams } from "react-router";
+import { Audio } from "react-loader-spinner";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -56,17 +57,20 @@ class Category extends Component {
     if (prevProps.activeLink !== this.props.activeLink) {
       let activeLink = this.props.activeLink.activeLink;
       if (activeLink === "all") {
+        this.setState({ products: {} });
         if (this.props.all.status === "idle") {
           await this.props.dispatch(fetchAllProducts());
         }
         this.setState({ products: this.props.all.products });
       } else if (activeLink === "clothes") {
+        this.setState({ products: {} });
         if (this.props.clothes.status === "idle") {
           await this.props.dispatch(fetchAllClothesProducts());
         }
         if (this.props.clothes.products)
           this.setState({ products: this.props.clothes.products });
       } else if (activeLink === "tech") {
+        this.setState({ products: {} });
         if (this.props.tech.status === "idle") {
           await this.props.dispatch(fetchAllTechProducts());
         }
@@ -77,24 +81,36 @@ class Category extends Component {
   }
 
   render() {
-    return this.state.products ? (
+    return (
       <div>
         <div className="container">
           <div className="title">All Products</div>
           <div className="cards_div">
-            {Object.keys(this.state.products).map((product) => {
-              return (
-                <ProductCard
-                  key={this.state.products[product]?.id}
-                  product={this.state.products[product]}
+            {this.state.products && this.state.products.length > 0 ? (
+              Object.keys(this.state.products).map((product) => {
+                return (
+                  <ProductCard
+                    key={this.state.products[product]?.id}
+                    product={this.state.products[product]}
+                  />
+                );
+              })
+            ) : (
+              <div className="loader">
+                <Audio
+                  height="80"
+                  width="80"
+                  radius="9"
+                  color="green"
+                  ariaLabel="loading"
+                  wrapperStyle
+                  wrapperClass
                 />
-              );
-            })}
+              </div>
+            )}
           </div>
         </div>
       </div>
-    ) : (
-      <p>Loading...</p>
     );
   }
 }
